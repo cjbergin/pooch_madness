@@ -1,7 +1,6 @@
-
-/**
- * Module dependencies.
- */
+/*
+* Module dependencies.
+*/
 
 var express = require('express');
 var routes = require('./routes');
@@ -49,9 +48,9 @@ var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-io.listen(server);
+io = io.listen(server);
 io.sockets.on('connection', function (socket) {
-console.log('user connected..');
-var msg = 'hello world';
-socket.emit('message', msg);
+  console.log('user connected..');
+  var msg = 'hello world';
+  socket.emit('message', msg);
 });
