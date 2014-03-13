@@ -8,8 +8,8 @@ block content
     .row
       .col-lg-4
         if name
-          p 
-            Hi #{name}
+          p
+            span Hi #{name}
             a.btn.btn-lg.btn-primary(href='/signout') Sign out
         else
           p
@@ -22,6 +22,6 @@ block content
           .puppy
             img(src=dog.image width=180)
 
-if name
-  script(src=socket.io/socket.io.js")
-  script(src='socket-client.js')
+  if name
+    script(src='socket.io/socket.io.js')
+    script(src='js/socket-client.js')
