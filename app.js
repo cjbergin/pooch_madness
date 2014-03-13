@@ -8,10 +8,11 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
-
+var io = require('socket.io');
 var app = express();
 
 // all environments
+
 app.set('appName', 'Pooch Madness');
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
@@ -44,6 +45,8 @@ app.post('/signup', user.create);
 app.post('/signin', user.signin);
 app.get('/signout', user.signout);
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+io.listen(server);
