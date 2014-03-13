@@ -50,3 +50,8 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 });
 
 io.listen(server);
+io.sockets.on('connection', function (socket) {
+console.log('user connected..');
+var msg = 'hello world';
+socket.emit('message', msg);
+});

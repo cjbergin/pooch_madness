@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-
+  #messages
   .match.container
     .row
       .col-lg-4
@@ -22,4 +22,6 @@ block content
           .puppy
             img(src=dog.image width=180)
 
-
+if name
+  script(src=socket.io/socket.io.js")
+  script(src='socket-client.js')
