@@ -21,7 +21,8 @@ block content
           h2= dog.name
           .puppy
             img(src=dog.image width=180)
+            p
+              button.btn.btn-primary.likeme(type='button') like me
 
-  if name
-    script(src='socket.io/socket.io.js')
-    script(src='js/socket-client.js')
+   script(src='socket.io/socket.io.js')
+   script(src='js/socket-client.js')

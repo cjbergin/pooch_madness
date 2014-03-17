@@ -7,7 +7,7 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
-var io = require('socket.io');
+//var io = require('socket.io');
 var app = express();
 
 // all environments
@@ -48,9 +48,11 @@ var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-io = io.listen(server);
+var io = require('socket.io').listen(server);
 io.sockets.on('connection', function (socket) {
   console.log('user connected..');
-  var msg = 'hello world';
-  socket.emit('message', msg);
-});
+  socket.on('addcount', function(count) {
+  	socket.emit('sendcount', count);
+  	socket.broadcast.emit('sendcount', count);
+  }); // end addcount listener
+}); //end connection listener
