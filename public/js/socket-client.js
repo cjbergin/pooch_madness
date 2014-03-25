@@ -6,7 +6,7 @@ var socket = io.connect();
   			$(this).attr('id', counter);
   			counter += 1; });
   			
-		$('button').click(function() {
+		$('.likeme').click(function() {
 		var id = $(this).attr('id');
 		socket.emit('addcount', id);
 		}); // end click handler
