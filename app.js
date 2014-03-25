@@ -5,6 +5,7 @@
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
+var pooch = require('./models/pooch');
 var http = require('http');
 var path = require('path');
 //var io = require('socket.io');
@@ -48,10 +49,21 @@ var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
+
+
 var io = require('socket.io').listen(server);
 io.sockets.on('connection', function (socket) {
   console.log('user connected..');
-  socket.on('addcount', function(count) {
+  dogs = pooch.all();
+  var count;
+  for (var i=0; i<=dogs.length-1; ++i)
+  	{ if (dogs[i].donations > 0)
+  		{ count = {'dog': i, 'donations': dogs[i].donations};
+  		  socket.emit('sendcount', count); }; };
+  			
+  socket.on('addcount', function(id) {
+  	pooch.incrementDonation(parseInt(id) + 1, 1);
+  	count = {'dog': id, 'donations': dogs[id].donations};
   	socket.emit('sendcount', count);
   	socket.broadcast.emit('sendcount', count);
   }); // end addcount listener

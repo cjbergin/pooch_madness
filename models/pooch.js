@@ -240,14 +240,13 @@ exports.find = function(id) {
 exports.incrementDonation = function(dog_id, amount) {
   var dog = exports.find(dog_id);
   var int_amount = parseInt(amount);
-
   console.log("------------");
   console.log(amount);
   console.log("------------");
 
-
   if(dog && !isNaN(int_amount)) {
     dog.donations += int_amount;
   }
+
 };
 

@@ -16,13 +16,16 @@ block content
             a.btn.btn-lg.btn-primary(href='/signup') Sign up
 
     .row
-      each dog in dogs
+      each dog in pooches
         .col-lg-4
           h2= dog.name
           .puppy
             img(src=dog.image width=180)
             p
-              button.btn.btn-primary.likeme(type='button') like me
+            span#test
+              button.btn.btn-primary.likeme#dog(data-id=dog.id)(type='button') like me
+              <div ></div>
+              
 
    script(src='socket.io/socket.io.js')
    script(src='js/socket-client.js')

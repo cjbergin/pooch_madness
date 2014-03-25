@@ -1,12 +1,21 @@
 
 var socket = io.connect();
-var counter = 0;
 	$(document).ready(function() {
+		var counter = 0; 
+  		$( ".likeme" ).each(function() {
+  			$(this).attr('id', counter);
+  			counter += 1; });
+  			
 		$('button').click(function() {
-			++counter;
-			socket.emit('addcount', counter);
+		var id = $(this).attr('id');
+		socket.emit('addcount', id);
 		}); // end click handler
 		socket.on('sendcount', function (data) {
-  			$('button').html('like me</br>' + data);
+			id = '#' + data.dog;
+  			$(id).html(data.donations);
   		}); // end sendcount listener
   	}); // end ready listener
+
+
+
+
